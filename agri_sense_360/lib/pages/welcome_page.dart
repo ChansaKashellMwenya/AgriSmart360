@@ -17,8 +17,14 @@ class WelcomePage extends StatelessWidget {
             children: [
               const SizedBox(height: 60),
 
-              // App logo placeholder
-              Icon(Icons.agriculture, size: 100, color: primaryGreen, semanticLabel: "App Logo"),
+              // App logo
+              Image.asset(
+                'lib/images/logo.png',
+                height: 100,
+                width: 100,
+                fit: BoxFit.contain,
+                semanticLabel: "App Logo",
+              ),
               const SizedBox(height: 20),
 
               // App title

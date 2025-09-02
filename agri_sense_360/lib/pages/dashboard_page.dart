@@ -85,7 +85,7 @@ class DashboardContent extends StatelessWidget {
               subtitle: "Loam",
               description: "Moisture: 65% | pH: 6.8",
               buttonText: "Scan Soil",
-              icon: Icons.camera_alt,
+              imagePath: 'lib/images/soil_image.jpg',
               color: primaryGreen,
             ),
 
@@ -95,7 +95,7 @@ class DashboardContent extends StatelessWidget {
               subtitle: "Tomatoes, Peppers, Cucumbers",
               description: "Based on soil and weather conditions",
               buttonText: "View Crop Tips",
-              icon: Icons.eco,
+              imagePath: 'lib/images/crops_image.jpg',
               color: primaryGreen,
             ),
 
@@ -105,7 +105,7 @@ class DashboardContent extends StatelessWidget {
               subtitle: "Moisture: 65%",
               description: "Smart Mode: On | Last Watered: 2h ago",
               buttonText: "Water Now",
-              icon: Icons.water_drop,
+              imagePath: 'lib/images/irrigation_image.jpg',
               color: primaryGreen,
             ),
 
@@ -115,7 +115,7 @@ class DashboardContent extends StatelessWidget {
               subtitle: "Temp: 25°C | Humidity: 70% | CO₂: 400 ppm",
               description: "Optimal: Temp(20-30°C), Humidity(60-80%), CO₂(300-500ppm)",
               buttonText: "View Details",
-              icon: Icons.thermostat,
+              imagePath: 'lib/images/greenhouse_image.jpg',
               color: primaryGreen,
             ),
 
@@ -125,7 +125,7 @@ class DashboardContent extends StatelessWidget {
               subtitle: "Status: Optimal",
               description: "",
               buttonText: "View Details",
-              icon: Icons.science,
+              imagePath: 'lib/images/nitrate_image.jpg',
               color: primaryGreen,
             ),
             const SizedBox(height: 8),
@@ -178,7 +178,7 @@ class SectionTitle extends StatelessWidget {
 
 class InfoCard extends StatelessWidget {
   final String title, subtitle, description, buttonText;
-  final IconData icon;
+  final String imagePath;
   final Color color;
 
   const InfoCard({
@@ -186,7 +186,7 @@ class InfoCard extends StatelessWidget {
     required this.subtitle,
     required this.description,
     required this.buttonText,
-    required this.icon,
+    required this.imagePath,
     required this.color,
     Key? key,
   }) : super(key: key);
@@ -194,9 +194,9 @@ class InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: const EdgeInsets.only(bottom: 16),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      elevation: 1,
+      elevation: 2,
       color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(14.0),
@@ -210,13 +210,14 @@ class InfoCard extends StatelessWidget {
                       style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: color)),
                   const SizedBox(height: 4),
                   Text(subtitle,
-                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Colors.black87)),
+                      style: const TextStyle(
+                          fontSize: 13, fontWeight: FontWeight.w500, color: Colors.black87)),
                   if (description.isNotEmpty) ...[
                     const SizedBox(height: 4),
                     Text(description, style: TextStyle(fontSize: 12, color: Colors.grey[600])),
                   ],
                   const SizedBox(height: 8),
-                  ElevatedButton.icon(
+                  ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green[50],
                       elevation: 0,
@@ -224,14 +225,21 @@ class InfoCard extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     ),
                     onPressed: () {},
-                    icon: Icon(icon, size: 16, color: color),
-                    label: Text(buttonText, style: TextStyle(fontSize: 12, color: color)),
+                    child: Text(buttonText, style: TextStyle(fontSize: 12, color: color)),
                   ),
                 ],
               ),
             ),
-            const SizedBox(width: 12),
-            Icon(icon, size: 38, color: color)
+            const SizedBox(width: 16),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                imagePath,
+                height: 100,
+                width: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
           ],
         ),
       ),
@@ -257,4 +265,4 @@ class QuickActionButton extends StatelessWidget {
       child: Text(text, style: TextStyle(fontSize: 13, color: primaryGreen)),
     );
   }
-} 
+}

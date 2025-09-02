@@ -15,14 +15,17 @@ class _OnboardingPageState extends State<OnboardingPage> {
     {
       "title": "Smart Farming",
       "subtitle": "Monitor soil, water, and crops with real-time data.",
+      "image": "lib/images/farming_image.jpg",
     },
     {
       "title": "Irrigation Control",
       "subtitle": "Automate irrigation to save time and resources.",
+      "image": "lib/images/irrigation_image.jpg",
     },
     {
       "title": "Data Insights",
       "subtitle": "Get reports and analytics for better decisions.",
+      "image": "lib/images/data_insights_image.jpg",
     },
   ];
 
@@ -68,18 +71,16 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Placeholder instead of image
+                      // Replacing the placeholder icon with images
                       Container(
                         height: 250,
                         width: 250,
                         decoration: BoxDecoration(
-                          color: Colors.green[100],
                           borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Icon(
-                          Icons.agriculture,
-                          size: 100,
-                          color: Colors.green,
+                          image: DecorationImage(
+                            image: AssetImage(_onboardingData[index]["image"]!),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 30),
